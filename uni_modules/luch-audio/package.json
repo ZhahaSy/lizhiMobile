@@ -1,0 +1,29 @@
+{
+	"id": "luch-audio",
+	"displayName": "luch-audio(api封装audio音频组件)",
+	"description": "基于createInnerAudioContext封装audio音频组件（样式同原生audio组件)",
+	"version": "1.0.7",
+	"keywords": [
+        "createInnerAudioContext",
+        "audio",
+        "luch"
+    ],
+	"author": "luch",
+	"license": "MIT",
+	"repository": "https://github.com/lei-mu/luch-audio.git",
+	"bugs": {
+		"url": "https://github.com/lei-mu/luch-audio/issues"
+	},
+	"homepage": "https://ext.dcloud.net.cn/plugin?id=480",
+    "dcloudext": {
+        "contact": {
+			"qq": "370306150"
+		},
+		"declaration": {
+			"ads": "无",
+			"data": "插件不采集任何数据",
+			"permissions": "无"
+        },
+        "type": "component-vue"
+	}
+}
