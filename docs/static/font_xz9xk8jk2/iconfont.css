@@ -1,0 +1,33 @@
+@font-face {
+  font-family: "iconfont"; /* Project id  */
+  src: url('iconfont.ttf?t=1703063956256') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-player-fast-forward:before {
+  content: "\e612";
+}
+
+.icon-player-fast-back:before {
+  content: "\e611";
+}
+
+.icon-player-list-play:before {
+  content: "\e613";
+}
+
+.icon-player-play:before {
+  content: "\e614";
+}
+
+.icon-player-pause-01:before {
+  content: "\e671";
+}
+
