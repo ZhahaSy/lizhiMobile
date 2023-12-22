@@ -1,5 +1,6 @@
 <template>
 	<view class="playerWrapper">
+		<img :class="['cover', isPlaying? 'isPlaying' : 'isPause']" :src="currentMusic.cover" alt="专辑图片" />
 		<text class="iconfont icon-player-fast-back pre" @click="handlePre"></text>
 		<text @click="handlePlay" :class="['iconfont', !isPlaying ? 'icon-player-play' : 'icon-player-pause-01']"></text>
 		<text class="iconfont icon-player-fast-forward next" @click="handleNext"></text>
@@ -9,7 +10,9 @@
 			<view class="musicListWrapper">
 				<h3>播放列表</h3>
 				<ul class="list">
-					<li v-for="(item,index) in musicList" :key="item.url" @click="() => {handleChangeMusic(index)}" class="listItem">{{item.name}}-{{item.artist}}</li>
+					<li v-for="(item,index) in musicList" :key="item.url"  :class="{
+						active: index === currentMusicIndex
+					}" @click="() => {handleChangeMusic(index)}" class="listItem">{{item.name}}-{{item.artist}}</li>
 				</ul>
 			</view>
 		</uni-popup>
@@ -26,12 +29,13 @@
 			return {
 				isPlaying: false,
 				currentMusicIndex: 0,
-				audioContext: uni.createInnerAudioContext(),
+				audioContext: undefined,
 			};
 		},
-		onLoad() {
-				this.audioContext.volume = 1
-				this.audioContext.loop = true
+		mounted() {
+			this.audioContext = uni.createInnerAudioContext()
+			this.audioContext.volume = 1
+			this.audioContext.onEnded(this.handleNext)
 		},
 		computed: {
 				currentMusic() {
@@ -39,10 +43,14 @@
 				}
 		},
 		watch:{
+			musicList(val) {
+					this.currentMusicIndex = 0
+			},
 			currentMusic(val) {
 				if (!(val && this.audioContext)) return
 				this.audioContext.src = val.url;
-				this.isPlaying = true
+				this.isPlaying = true;
+				this.audioContext.play()
 			},
 			isPlaying(val) {
 				val ? this.audioContext.play() : this.audioContext.pause()
@@ -96,11 +104,12 @@
 <style lang="less" scoped>
 .playerWrapper {
 	display: flex;
+	align-items: center;
 	z-index: 2021;
 	position: fixed;
 	bottom: 0;
 	width: calc(100% - 40px);
-	height: 40px;
+	height: 60px;
 	background-color: #111;
 	color: #fff;
 	padding: 0 20px 0;
@@ -120,6 +129,41 @@
 		text-overflow: ellipsis;
 		font-size: 16px
 	}
+	.cover {
+		width: 30px;
+		height: 30px;
+		border-radius: 15px;
+		animation: rotate 10s linear infinite;
+		animation-fill-mode: forwards;
+		 @keyframes rotate {
+		        0% {
+		            transform: rotate(0);
+		        }
+		
+		        25% {
+		            transform: rotate(90deg);
+		        }
+		
+		        50% {
+		            transform: rotate(180deg);
+		        }
+		
+		        75% {
+		            transform: rotate(270deg);
+		        }
+		
+		        100% {
+		            transform: rotate(360deg);
+		        }
+		    }
+		animation-fill-mode: forwards;
+		&.isPlaying {
+			animation-play-state: running;
+		}
+		&.isPause {
+			animation-play-state: paused;
+		}
+	}
 	
 }
 .musicListWrapper {
@@ -128,12 +172,21 @@
 	color: #333;
 	padding: 10px;
 	border-radius: 10px 10px 0 0;
+	h3 {
+		background-color: #fff;
+	}
 	.list {
-		margin-top: 10px;
+		height: calc(60vh - 40px);
+		overflow: scroll;
+		padding-top: 10px;
 		.listItem {
-			padding: 6px;
-			width: 100%;
-			font-size: 13px;
+			padding: 10px;
+			font-size: 14px;
+			font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+			color: #a2a2a2;
+			&.active {
+				color: #111;
+			}
 		}
 	}
 }

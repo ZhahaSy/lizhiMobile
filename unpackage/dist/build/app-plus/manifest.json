@@ -7,8 +7,8 @@
   "id": "__UNI__E03EE20",
   "name": "lizhiApp",
   "version": {
-    "name": "1.0.0",
-    "code": "100"
+    "name": "1.0.1",
+    "code": 101
   },
   "description": "",
   "developer": {
@@ -42,6 +42,14 @@
     "nvueStyleCompiler": "uni-app",
     "compilerVersion": 3,
     "distribute": {
+      "splashscreen": {
+        "androidStyle": "default",
+        "android": {
+          "hdpi": "/Users/v_zhangshaungyi/Desktop/lizhi.bg.png",
+          "xhdpi": "/Users/v_zhangshaungyi/Desktop/lizhi.bg.png",
+          "xxhdpi": "/Users/v_zhangshaungyi/Desktop/lizhi.bg.png"
+        }
+      },
       "google": {
         "permissions": [
           "<uses-permission android:name=\"android.permission.CHANGE_NETWORK_STATE\"/>",
