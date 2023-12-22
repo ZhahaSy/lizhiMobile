@@ -1,4 +1,4 @@
-# 李志 andriod 保持理智！
+# 李志 android 保持理智！
 特别鸣谢: [turkyden](https://github.com/turkyden/lizhi) 提供 资源数据
 
 <img src="https://cdn.jsdelivr.net/gh/ZhahaSy/lizhiMobile@main/static/screeShot.jpg" />
