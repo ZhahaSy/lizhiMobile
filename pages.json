@@ -6,6 +6,13 @@
 				"navigationBarTitleText": "lizhi",
 				"backgroundColor": "#111"
 			}
+		},
+		{
+			"path": "pages/detail/index",
+			"style": {
+				"navigationBarTitleText": "",
+				"backgroundColor": "#111"
+			}
 		}
 	],
 	"globalStyle": {
